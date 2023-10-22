@@ -1,0 +1,7 @@
+{
+  "name": "sogno-di-ale-fe",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
