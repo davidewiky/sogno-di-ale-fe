@@ -1,19 +1,21 @@
-"use server";
+"use client";
 
-import { fetcher } from "~/lib/fetcher";
 import type { Dashboard } from "~/types/dashboard";
 import { logger } from "~/utils/logger";
+import {getRequest} from "~/lib/httpclient";
 
 export async function getDashboardNews() {
   logger.info("Chiamata dashboard/type/NEWS");
-  return fetcher<Dashboard[]>(
-    `${process.env.serviceUrl_sogno_di_ale_server}/api/dashboard/type/NEWS`,
-  );
+  return getRequest<Dashboard[]>(`${process.env.NEXT_PUBLIC_SOGNO_DI_ALE_SERVER}/api/dashboard/type/NEWS`);
 }
 
+export async function getDashboardEvents() {
+  logger.info("Chiamata dashboard/type/EVENTS");
+  return getRequest<Dashboard[]>(`${process.env.NEXT_PUBLIC_SOGNO_DI_ALE_SERVER}/api/dashboard/type/EVENTS`);
+}
 export async function getDashboardFaqs() {
   logger.info("Chiamata dashboard/type/FAQ");
-  return fetcher<Dashboard[]>(
-    `${process.env.serviceUrl_sogno_di_ale_server}/api/dashboard/type/FAQ`,
+  return getRequest<Dashboard[]>(
+    `${process.env.NEXT_PUBLIC_SOGNO_DI_ALE_SERVER}/api/dashboard/type/FAQ`,
   );
 }
