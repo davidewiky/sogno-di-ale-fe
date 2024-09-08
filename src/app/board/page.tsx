@@ -3,7 +3,7 @@
 import { Grid, Stack, Typography } from "@mui/material";
 import backgroundImage from "../../../public/placeholder.jpg";
 import { HomeNews } from "./components/home/news";
-import { HomeEvents } from "./components/home/new-documents";
+import { HomeEvents } from "./components/home/last-event";
 import { HomeStats } from "./components/home/patients";
 import { HomeAboutUs } from "./components/home/help";
 

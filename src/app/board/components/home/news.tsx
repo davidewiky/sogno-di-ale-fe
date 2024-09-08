@@ -4,6 +4,7 @@ import { Alert, Skeleton, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import {getDashboardEvents, getDashboardNews} from "~/lib/dashboard/dashboard";
+import {SingleEvents} from "~/app/board/components/home/single-event";
 
 export function HomeNews() {
   const { data, isLoading, isError, refetch } = useQuery({
@@ -23,13 +24,13 @@ export function HomeNews() {
 
   if (isError) {
     return (
-      <Alert severity="error">Non è stato possibile recuperare le news</Alert>
+      <Alert severity="error">Non è stato possibile recuperare i prossimi incontri</Alert>
     );
   }
 
   return (
     <>
-      <Typography variant="h3">Notizie e comunicazioni</Typography>
+      <Typography variant="h3">Prossimi incontri</Typography>
       {isLoading ? (
         <>
           <Skeleton />
@@ -39,16 +40,7 @@ export function HomeNews() {
       ) : null}
       {data?.map((news) => {
         return (
-          <>
-            <Typography variant="h6">{news.title}</Typography>
-            {news.attachment ? <div style={{ marginBottom: '10px' }}>
-              <img src={`data:image/jpg;base64,${news.attachment}`} alt="file"/>
-            </div> : null}
-
-            <Typography variant="body2">
-              <div dangerouslySetInnerHTML={{ __html: news.content }} />
-            </Typography>
-          </>
+          <SingleEvents dashboradEvents={news} width="18cm" height="18cm"/>
         );
       })}
     </>

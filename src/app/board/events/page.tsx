@@ -4,26 +4,15 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Alert,
   Box,
-  Skeleton,
-  Stack,
+  Grid, Typography,
 } from "@mui/material";
-import React, { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import React from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { getPublishedDocument } from "~/lib/documenti/document";
-import { BasketsDetail } from "~/app/board/documents/components/detail/baskets-detail";
-import { PatientSummary } from "~/app/board/documents/components/summary/patient-summary";
-import { PreviewDocument } from "~/app/board/documents/components/preview/preview-document";
-import type { BasketDocument } from "~/types/document";
-import { Filters } from "~/app/board/documents/components/summary/filters";
+import {EventAccordionDetail} from "~/app/board/events/components/detail/event-card-detail";
 
 export default function EventsPage() {
-  const [selectedDocument, setSelectedDocument] =
-    useState<BasketDocument | null>(null);
-
-  const { data, isLoading, isError, error } = useQuery({
+  /*const { data, isLoading, isError, error } = useQuery({
     queryKey: ["publishedDocument"],
     queryFn: () => {
       return getPublishedDocument();
@@ -43,42 +32,40 @@ export default function EventsPage() {
 
   if (isError) {
     return <Alert severity="error">{error.message}</Alert>;
-  }
+  } */
 
   return (
-    <>
-      <Box width={selectedDocument ? "49%" : "100%"}>
-        <Filters />
-        <Box height="calc(100vh - 255px)" overflow="auto">
-          {data?.patientDocumentSents.map((doc) => (
-            <Accordion key={doc.patient.neoc} variant="outlined">
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                sx={{ flexDirection: "row-reverse", gap: 2 }}
-              >
-                <PatientSummary doc={doc} />
-              </AccordionSummary>
-              {doc.baskets ? (
-                <AccordionDetails>
-                  <BasketsDetail
-                    baskets={doc.baskets}
-                    handleClickDocument={setSelectedDocument}
-                    selectedDocument={selectedDocument}
-                  />
-                </AccordionDetails>
-              ) : null}
-            </Accordion>
-          ))}
-        </Box>
+      <Box sx={{ flexGrow: 1, padding: "20px" }}>
+        <Grid container spacing={2}>
+          {/* Colonna con Accordion */}
+          <Grid item xs={12} md={6}>
+        <Accordion sx={{ width: "100%" }}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography variant="h6">Accordion Title</Typography>
+          </AccordionSummary>
+
+          <AccordionDetails>
+            <EventAccordionDetail />
+          </AccordionDetails>
+        </Accordion>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ marginBottom: "20px" }}>
+              <iframe
+                width="100%"
+                height="315"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                title="YouTube video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </Box>
+          </Grid>
+        </Grid>
       </Box>
-      {selectedDocument ? (
-        <PreviewDocument
-          onClose={() => {
-            setSelectedDocument(null);
-          }}
-          selectedDocument={selectedDocument}
-        />
-      ) : null}
-    </>
   );
 }

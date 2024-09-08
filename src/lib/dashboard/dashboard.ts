@@ -19,3 +19,10 @@ export async function getDashboardFaqs() {
     `${process.env.NEXT_PUBLIC_SOGNO_DI_ALE_SERVER}/api/dashboard/type/FAQ`,
   );
 }
+
+export async function getLatestDashboardEvents() {
+  logger.info("Chiamata last dashboard/type/EVENTS");
+  return getRequest<Dashboard[]>(
+    `${process.env.NEXT_PUBLIC_SOGNO_DI_ALE_SERVER}/api/dashboard/type/EVENTS/latest`,
+  );
+}
