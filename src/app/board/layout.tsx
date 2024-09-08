@@ -13,7 +13,7 @@ export default function DashboardLayout({ children }: DashboardProps) {
   return (
     <ClientProviderWrapper>
       <Header />
-      <Box mt="100px" px={10} py={5}>
+      <Box mt="100px" px={5} py={2}>
         {children}
       </Box>
     </ClientProviderWrapper>
