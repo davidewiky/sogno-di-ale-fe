@@ -15,7 +15,7 @@ module.exports = {
     "plugin:sonarjs/recommended",
     "prettier",
   ],
-  plugins: ["prettier", "sonarjs"],
+  plugins: ["prettier"],
   parserOptions: {
     project,
   },

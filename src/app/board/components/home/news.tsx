@@ -3,13 +3,18 @@
 import { Alert, Skeleton, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getDashboardNews } from "~/lib/dashboard/dashboard";
+import {getDashboardEvents, getDashboardNews} from "~/lib/dashboard/dashboard";
+import {SingleEvents} from "~/app/board/components/home/single-event";
 
 export function HomeNews() {
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["news"],
-    queryFn: () => {
-      return getDashboardNews();
+    queryFn: async () => {
+      const [dashboardNews, dashboardEvents] = await Promise.all([
+        getDashboardNews(),
+        getDashboardEvents(),
+        ]);
+      return [...dashboardNews, ...dashboardEvents];
     },
   });
 
@@ -19,13 +24,13 @@ export function HomeNews() {
 
   if (isError) {
     return (
-      <Alert severity="error">Non è stato possibile recuperare le news</Alert>
+      <Alert severity="error">Non è stato possibile recuperare i prossimi incontri</Alert>
     );
   }
 
   return (
     <>
-      <Typography variant="h3">Notizie e comunicazioni</Typography>
+      <Typography variant="h3">Prossimi incontri</Typography>
       {isLoading ? (
         <>
           <Skeleton />
@@ -35,12 +40,7 @@ export function HomeNews() {
       ) : null}
       {data?.map((news) => {
         return (
-          <>
-            <Typography variant="h6">{news.title}</Typography>
-            <Typography variant="body2">
-              <div dangerouslySetInnerHTML={{ __html: news.content }} />
-            </Typography>
-          </>
+          <SingleEvents dashboradEvents={news} width="18cm" height="18cm"/>
         );
       })}
     </>

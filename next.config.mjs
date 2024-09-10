@@ -10,7 +10,7 @@ const nextConfigBase = {
     },
     {
       source: "/sogno-di-ale-server/:path*",
-      destination: process.env.serviceUrl_sogno_di_ale_server + "/:path*",
+      destination: process.env.NEXT_PUBLIC_SOGNO_DI_ALE_SERVER + "/:path*",
       basePath: false,
       permanent: true,
     },

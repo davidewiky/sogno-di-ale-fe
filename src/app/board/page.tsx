@@ -3,7 +3,7 @@
 import { Grid, Stack, Typography } from "@mui/material";
 import backgroundImage from "../../../public/placeholder.jpg";
 import { HomeNews } from "./components/home/news";
-import { HomeEvents } from "./components/home/new-documents";
+import { HomeEvents } from "./components/home/last-event";
 import { HomeStats } from "./components/home/patients";
 import { HomeAboutUs } from "./components/home/help";
 
@@ -23,15 +23,13 @@ export default function DashboardPage() {
         }}
       >
         <Typography variant="h5">Il sogno</Typography>
-        <Typography variant="h3">
-          di Ale Onlus
-        </Typography>
+        <Typography variant="h3">di Ale Onlus</Typography>
       </Stack>
-      <Grid container spacing={2}>
-        <Grid item md={7} xs={12}>
+      <Grid container justifyContent="space-between" spacing={1}>
+        <Grid item md={8} xs={13}>
           <HomeNews />
         </Grid>
-        <Grid item md={5} xs={12}>
+        <Grid item md={4} xs={13}>
           <HomeEvents />
           <HomeStats />
           <HomeAboutUs />
