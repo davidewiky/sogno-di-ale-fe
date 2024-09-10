@@ -1,4 +1,4 @@
-FROM nexus.eoc.ch:5000/adula/eoc-exec-ubuntu-22-04-node20:master
+FROM eoc-exec-ubuntu-22-04-node20:local
 
 COPY package.json .
 COPY node_modules ./node_modules
