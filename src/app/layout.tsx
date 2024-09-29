@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ServerProviders } from "~/components/utils/provider-server";
-import { UserInfoContextProvider } from "~/components/utils/providers";
+import { ClientProviderWrapper, UserInfoContextProvider } from "~/components/utils/providers";
 
 export const metadata: Metadata = {
   title: "Sogno di Ale",
@@ -19,7 +19,9 @@ export default function RootLayout({
       </head>
       <body>
         <ServerProviders>
-          <UserInfoContextProvider>{children}</UserInfoContextProvider>
+          <ClientProviderWrapper>
+            <UserInfoContextProvider>{children}</UserInfoContextProvider>
+          </ClientProviderWrapper>
         </ServerProviders>
       </body>
     </html>

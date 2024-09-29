@@ -40,7 +40,7 @@ export function HomeNews() {
       ) : null}
       {data?.map((news) => {
         return (
-          <SingleEvents dashboradEvents={news} width="18cm" height="18cm"/>
+          <SingleEvents dashboradEvents={news} height="18cm" isEdit={false} key={news.id} width="18cm"/>
         );
       })}
     </>

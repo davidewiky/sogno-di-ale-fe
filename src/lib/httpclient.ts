@@ -1,6 +1,7 @@
 "use client"
 
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import type { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios from 'axios';
 import { logger } from "~/utils/logger";
 
 export async function getRequest<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
@@ -16,6 +17,16 @@ export async function getRequest<T>(url: string, config?: AxiosRequestConfig): P
 export async function postRequest<T>(url: string, data?: never, config?: AxiosRequestConfig): Promise<T> {
   try {
     const response: AxiosResponse<T> = await axios.post(url, data, config);
+    return response.data;
+  } catch (error) {
+    handleError(error);
+    throw error;
+  }
+}
+
+export async function deleteRequest<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
+  try {
+    const response: AxiosResponse<T> = await axios.delete(url, config);
     return response.data;
   } catch (error) {
     handleError(error);

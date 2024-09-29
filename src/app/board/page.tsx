@@ -4,7 +4,7 @@ import { Grid, Stack, Typography } from "@mui/material";
 import backgroundImage from "../../../public/placeholder.jpg";
 import { HomeNews } from "./components/home/news";
 import { HomeEvents } from "./components/home/last-event";
-import { HomeStats } from "./components/home/patients";
+import { HomeStats } from "./components/home/stats";
 import { HomeAboutUs } from "./components/home/help";
 
 export default function DashboardPage() {

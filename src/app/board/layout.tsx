@@ -11,11 +11,11 @@ interface DashboardProps {
 
 export default function DashboardLayout({ children }: DashboardProps) {
   return (
-    <ClientProviderWrapper>
+    <>
       <Header />
       <Box mt="100px" px={5} py={2}>
         {children}
       </Box>
-    </ClientProviderWrapper>
+    </>
   );
 }

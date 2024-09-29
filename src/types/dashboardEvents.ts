@@ -1,4 +1,5 @@
-export interface Dashboard {
+export interface DashboardEvents {
+  id: string | null,
   title: string;
   content: string;
   orderView: number;
