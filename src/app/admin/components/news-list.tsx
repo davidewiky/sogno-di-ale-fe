@@ -4,13 +4,13 @@ import AddIcon from "@mui/icons-material/Add";
 import { Box, Button, Skeleton, Typography } from "@mui/material";
 import { getDashboardEvents, getDashboardNews } from "~/lib/dashboard/dashboard";
 import { SingleEvents } from "~/app/board/components/home/single-event";
-import type { DashboardEvents } from "~/types/dashboardEvents";
+import type { DashboardEvents } from "~/types/dashboard-events";
 
 interface EventListProps {
   pathFragment: string;
 }
 
-export function EventList({
+export function NewsList({
   pathFragment,
 }: Readonly<EventListProps>) {
   const router = useRouter();
@@ -53,7 +53,7 @@ export function EventList({
         <Skeleton animation="pulse" variant="rectangular" />
       ) : (
         data.map((value) => (
-          <SingleEvents dashboradEvents={value} height="8cm" isEdit key={value.id} onClickEdit={onClickEdit} width="8cm"/>
+          <SingleEvents dashboradEvents={value} height="8cm" key={value.id} onClickEdit={onClickEdit} width="8cm"/>
         ))
       )}
     </>

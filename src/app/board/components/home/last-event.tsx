@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getLatestDashboardEvents } from "~/lib/dashboard/dashboard";
 import { SingleEvents } from "~/app/board/components/home/single-event";
 import React from "react";
-import {DashboardEvents} from "~/types/dashboardEvents";
+import {DashboardEvents} from "~/types/dashboard-events";
 
 export function HomeEvents() {
   const { data, isLoading, isError} = useQuery({

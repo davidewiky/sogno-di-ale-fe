@@ -1,4 +1,4 @@
-import { DashboardEvents } from "~/types/dashboardEvents";
+import { DashboardEvents } from "~/types/dashboard-events";
 import { Box, Button, Typography } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import EditIcon from "@mui/icons-material/Edit";
@@ -12,10 +12,9 @@ interface SingleEventsProps {
   dashboradEvents: DashboardEvents,
   width: string,
   height: string,
-  isEdit: boolean,
   onClickEdit?: (item: DashboardEvents) => void;
 }
-export function SingleEvents({ dashboradEvents, width, height, isEdit, onClickEdit }: Readonly<SingleEventsProps>) {
+export function SingleEvents({ dashboradEvents, width, height, onClickEdit }: Readonly<SingleEventsProps>) {
   const queryClient = useQueryClient();
   return (
     <>
@@ -35,7 +34,7 @@ export function SingleEvents({ dashboradEvents, width, height, isEdit, onClickEd
             <div dangerouslySetInnerHTML={{ __html: dashboradEvents.content }} />
           </Typography>
         </Box>
-        {isEdit && onClickEdit ? (
+        {onClickEdit ? (
           <Box
             sx={{
               display: "flex",

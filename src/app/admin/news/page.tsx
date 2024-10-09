@@ -1,7 +1,7 @@
 "use client";
 
-import { EventList } from "~/app/admin/components/event-list";
+import { NewsList } from "~/app/admin/components/news-list";
 
 export default function HomeNews() {
-  return <EventList pathFragment={"news"} />;
+  return <NewsList pathFragment={"news"} />;
 }

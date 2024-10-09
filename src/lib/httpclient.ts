@@ -14,7 +14,7 @@ export async function getRequest<T>(url: string, config?: AxiosRequestConfig): P
   }
 }
 
-export async function postRequest<T>(url: string, data?: never, config?: AxiosRequestConfig): Promise<T> {
+export async function postRequest<T>(url: string, data?: string, config?: AxiosRequestConfig): Promise<T> {
   try {
     const response: AxiosResponse<T> = await axios.post(url, data, config);
     return response.data;
@@ -34,10 +34,11 @@ export async function deleteRequest<T>(url: string, config?: AxiosRequestConfig)
   }
 }
 
-function handleError(error: any): void {
+function handleError(error: unknown): void {
   if (axios.isAxiosError(error)) {
     logger.error(`Errore nella richiesta Axios: ${error.message}`);
   } else {
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions -- will be a string
     logger.error(`Errore generico: ${error}`);
   }
 }

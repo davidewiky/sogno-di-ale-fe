@@ -1,0 +1,32 @@
+.main-editor * {
+  outline: none;
+}
+
+.main-editor p {
+  margin: 0;
+}
+
+.editor-italic {
+  font-style: italic;
+}
+
+.editor-underline {
+  text-decoration: underline;
+}
+
+.editor-nestedList {
+  list-style-type: none;
+}
+
+.editor-nestedList:before,
+.editor-nestedList:after {
+  display: none;
+}
+
+.editor-paragraph:first-of-type {
+  margin-top: 0;
+}
+
+.editor-paragraph:last-of-type {
+  margin-bottom: 0;
+}
