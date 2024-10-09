@@ -56,6 +56,7 @@ export function SingleEvents({ dashboradEvents, width, height, onClickEdit }: Re
             </Button>
             <Button
               color="error"
+              {/* eslint-disable-next-line @typescript-eslint/no-misused-promises -- permitted */}
               onClick={ async () => {
                 if (dashboradEvents.id) {
                   const data = await deleteEvents(dashboradEvents.id);

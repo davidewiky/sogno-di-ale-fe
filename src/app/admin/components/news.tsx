@@ -3,7 +3,7 @@
 import {Box, Button, TextField, Typography} from "@mui/material";
 import ReplyIcon from "@mui/icons-material/Reply";
 import SaveIcon from "@mui/icons-material/Save";
-import {DateTimePicker} from "@mui/x-date-pickers";
+import {DateTimePicker} from "@mui/x-date-pickers-pro";
 import {useRouter} from "next/navigation";
 import {useState} from "react";
 import type {DashboardEvents} from "~/types/dashboard-events";
