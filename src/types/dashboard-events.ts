@@ -1,5 +1,5 @@
 export interface DashboardEvents {
-  id: string | null,
+  id: string | null;
   title: string;
   content: string;
   orderView: number;
@@ -12,5 +12,5 @@ export interface DashboardEvents {
 export enum DashboardItemType {
   News = "NEWS",
   Faq = "FAQ",
-  Forms = "FORMS",
+  Events = "EVENTS",
 }

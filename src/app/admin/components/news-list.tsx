@@ -2,28 +2,37 @@ import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import AddIcon from "@mui/icons-material/Add";
 import { Box, Button, Skeleton, Typography } from "@mui/material";
-import { getDashboardEvents, getDashboardNews } from "~/lib/dashboard/dashboard";
+import {
+  getDashboardEvents,
+  getDashboardNews,
+} from "~/lib/dashboard/dashboard";
 import { SingleEvents } from "~/app/board/components/home/single-event";
-import type { DashboardEvents } from "~/types/dashboard-events";
+import type { DashboardEvents} from "~/types/dashboard-events";
+import { DashboardItemType } from "~/types/dashboard-events";
 
 interface EventListProps {
   pathFragment: string;
+  pageTitle: string;
+  type: DashboardItemType;
 }
 
 export function NewsList({
   pathFragment,
+  pageTitle,
+  type,
 }: Readonly<EventListProps>) {
   const router = useRouter();
   const { data = [], isLoading } = useQuery({
-    queryKey: ["event-list"],
+    queryKey: [`${type}-list`],
     queryFn: async () => {
-      const [dashboardNews, dashboardEvents] = await Promise.all([
-        getDashboardNews(),
-        getDashboardEvents(),
-      ]);
-      return [...dashboardNews, ...dashboardEvents];
-    }
-  })
+      if (type === DashboardItemType.Events) {
+        return getDashboardEvents();
+      }
+      if (type === DashboardItemType.News) {
+        return getDashboardNews();
+      }
+    },
+  });
   const onClickEdit = (value: DashboardEvents) => {
     if (!value.id) {
       return;
@@ -38,7 +47,7 @@ export function NewsList({
     <>
       <Box sx={{ marginBottom: "20px" }}>
         <Typography sx={{ margin: "20px 0" }} variant="h4">
-          Gestione Notizie/Eventi
+          {pageTitle}
         </Typography>
         <Button
           color="primary"
@@ -53,7 +62,13 @@ export function NewsList({
         <Skeleton animation="pulse" variant="rectangular" />
       ) : (
         data.map((value) => (
-          <SingleEvents dashboradEvents={value} height="8cm" key={value.id} onClickEdit={onClickEdit} width="8cm"/>
+          <SingleEvents
+            dashboradEvents={value}
+            height="8cm"
+            key={value.id}
+            onClickEdit={onClickEdit}
+            width="8cm"
+          />
         ))
       )}
     </>

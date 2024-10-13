@@ -1,5 +1,7 @@
-"use client"
+"use client";
+
+import { NewsList } from "~/app/admin/components/news-list";
 
 export default function EventsConfig() {
-  return <div>Pagina configurazione eventi e video</div>
+  return <NewsList pageTitle="Gestione Eventi" pathFragment="events" />;
 }

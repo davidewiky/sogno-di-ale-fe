@@ -3,7 +3,6 @@
 import { Box } from "@mui/material";
 import type { ReactNode } from "react";
 import { Header } from "./components/header/header";
-import { ClientProviderWrapper } from "~/components/utils/providers";
 
 interface DashboardProps {
   children: ReactNode;
