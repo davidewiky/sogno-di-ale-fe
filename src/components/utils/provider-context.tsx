@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import type { UserInfo, UserInfoContextType } from "~/types/user-info";
 
 export const UserInfoContext = createContext<UserInfoContextType | null>(null);
@@ -12,17 +12,18 @@ export function UserInfoContextProvider({
 }) {
   const [userInfoInit, setUserInfoInit] = useState<UserInfo>({
     userName: null,
-    privateRsa: null,
-    aes: null,
   });
   const saveNewUser = (userInfo: UserInfo) => {
     const newUser = {
-      aes: userInfo.aes,
-      privateRsa: userInfo.privateRsa,
       userName: userInfo.userName,
     };
+    localStorage.setItem("isAuth", String(userInfo.userName !== null));
     setUserInfoInit(newUser);
   };
+
+  useEffect(() => {
+    localStorage.setItem("isAuth", String(userInfoInit.userName !== null));
+  }, [userInfoInit]);
 
   return (
     <UserInfoContext.Provider

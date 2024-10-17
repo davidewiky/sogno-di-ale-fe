@@ -25,24 +25,24 @@ export async function signIn({
   try {
     if (!register) {
       response = await fetch(
-        `${process.env.serviceUrl_sogno_di_ale_server}/api/auth/login`,
+        `${process.env.NEXT_PUBLIC_SOGNO_DI_ALE_SERVER}/api/auth/login`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({username, password}),
+          body: JSON.stringify({ username, password }),
         },
       );
     } else {
       response = await fetch(
-        `${process.env.serviceUrl_sogno_di_ale_server}/api/auth/register`,
+        `${process.env.NEXT_PUBLIC_SOGNO_DI_ALE_SERVER}/api/auth/register`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({username, password}),
+          body: JSON.stringify({ username, password }),
         },
       );
     }
@@ -53,10 +53,8 @@ export async function signIn({
 
     const data: AuthResponse = (await response.json()) as AuthResponse;
     const token = data.token;
-    const aes = data.aes;
 
     logger.info(`Token ottenuto: ${token}`);
-    logger.info(`Aes: ${aes}`);
     if (token) {
       cookies().set(TOKEN_NAME, token, cookiesOptions);
     }

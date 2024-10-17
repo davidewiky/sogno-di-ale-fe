@@ -1,8 +1,9 @@
 "use client";
 
-import { Box, Tab, Tabs } from "@mui/material";
+import { Box, Button, Tab, Tabs } from "@mui/material";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import ReplyIcon from "@mui/icons-material/Reply";
 
 const tabs = [
   {
@@ -14,9 +15,10 @@ const tabs = [
     href: "/admin/events",
     label: "Gestione Eventi",
     type: "events",
-  }
+  },
 ];
 
+const routeHome = { label: "Home", path: "/board" };
 export default function AdminLayout({
   children,
 }: Readonly<{
@@ -25,9 +27,19 @@ export default function AdminLayout({
   const pathname = usePathname();
   const index = tabs.findIndex((tab) => pathname.startsWith(tab.href));
   const value = index >= 0 ? index : false;
+  const router = useRouter();
   return (
     <>
-      <div>Layout di edit da mettere in un routeguard </div>
+      <Button
+        onClick={() => {
+          router.replace(routeHome.path);
+        }}
+        startIcon={<ReplyIcon />}
+        sx={{ marginTop: 1 }}
+        variant="outlined"
+      >
+        Home
+      </Button>
       <Box sx={{ padding: "20px 32px" }}>
         <Box>
           <Tabs value={value}>

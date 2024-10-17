@@ -17,25 +17,27 @@ export function HeaderPageWidget({ isLogged }: { isLogged: boolean }) {
   const pathname = usePathname();
   const location = getLastFragment(pathname);
   const router = useRouter();
-  if (location === "" && !isLogged) {
-    return <SignOutButton signOut={signOut} />;
+  if (location === "" && isLogged) {
+    return (
+      <Box>
+        <Button
+          onClick={() => {
+            router.replace(routeConfig.path);
+          }}
+        >
+          Configurazione
+        </Button>
+        <SignOutButton signOut={signOut} />
+      </Box>
+    );
   }
   return (
-    <Box>
-      <Button
-        onClick={() => {
-          router.replace(routeConfig.path);
-        }}
-      >
-        Configurazione
-      </Button>
-      <Button
-        onClick={() => {
-          router.replace(routeAuth.path);
-        }}
-      >
-        Accedi
-      </Button>
-    </Box>
+    <Button
+      onClick={() => {
+        router.replace(routeAuth.path);
+      }}
+    >
+      Accedi
+    </Button>
   );
 }
