@@ -1,7 +1,6 @@
 export interface UserInfo {
   userName: string | null;
-  privateRsa?: string | null;
-  aes?: string | null;
+  isAuth: boolean;
 }
 
 export interface UserInfoContextType {

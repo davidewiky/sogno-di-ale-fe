@@ -1,40 +1,25 @@
 "use client";
 
-import { Grid, Stack, Typography } from "@mui/material";
-import backgroundImage from "../../../public/placeholder.jpg";
+import { Box, Grid, Typography } from "@mui/material";
+import React from "react";
 import { HomeNews } from "./components/home/news";
-import { HomeEvents } from "./components/home/last-event";
-import { HomeStats } from "./components/home/stats";
-import { HomeAboutUs } from "./components/home/help";
+import { Payments } from "./components/home/payments";
+import { Info } from "~/app/board/components/home/info";
 
 export default function DashboardPage() {
   return (
-    <>
-      <Stack
-        color="#fff"
-        height={250}
-        justifyContent="center"
-        mb={5}
-        mt={-5}
-        mx={-10}
-        px={10}
-        sx={{
-          backgroundImage: `url(${backgroundImage.src})`,
-        }}
-      >
-        <Typography variant="h5">Il sogno</Typography>
-        <Typography variant="h3">di Ale Onlus</Typography>
-      </Stack>
+    <Box>
+      <Typography variant="h5">Il sogno</Typography>
+      <Typography variant="h3">di Ale Onlus</Typography>
       <Grid container justifyContent="space-between" spacing={1}>
-        <Grid item md={8} xs={13}>
+        <Grid item md={5} xs={13}>
           <HomeNews />
         </Grid>
-        <Grid item md={4} xs={13}>
-          <HomeEvents />
-          <HomeStats />
-          <HomeAboutUs />
+        <Grid item md={7} xs={13}>
+          <Info />
+          <Payments />
         </Grid>
       </Grid>
-    </>
+    </Box>
   );
 }

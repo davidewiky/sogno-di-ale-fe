@@ -1,48 +1,20 @@
 "use client";
 
-import { Alert, Skeleton, Typography } from "@mui/material";
-import React, { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import {getDashboardEvents, getDashboardNews} from "~/lib/dashboard/dashboard";
-import {SingleEvents} from "~/app/board/components/home/single-event";
+import React, { useEffect, useState } from "react";
+import "../../../../style.css";
+import { Box } from "@mui/material";
+import { Flower } from "~/app/board/components/home/flower";
 
 export function HomeNews() {
-  const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ["news"],
-    queryFn: async () => {
-      const [dashboardNews, dashboardEvents] = await Promise.all([
-        getDashboardNews(),
-        getDashboardEvents(),
-        ]);
-      return [...dashboardNews, ...dashboardEvents];
-    },
-  });
-
+  const [isClient, setIsClient] = useState(false);
   useEffect(() => {
-    void refetch();
-  }, [refetch]);
+    setIsClient(true);
+  }, []);
 
-  if (isError) {
-    return (
-      <Alert severity="error">Non è stato possibile recuperare i prossimi incontri</Alert>
-    );
-  }
-
+  if (!isClient) return null;
   return (
-    <>
-      <Typography variant="h3">Prossimi incontri</Typography>
-      {isLoading ? (
-        <>
-          <Skeleton />
-          <Skeleton />
-          <Skeleton />
-        </>
-      ) : null}
-      {data?.map((news) => {
-        return (
-          <SingleEvents dashboradEvents={news} height="18cm" isEdit={false} key={news.id} width="18cm"/>
-        );
-      })}
-    </>
+    <Box alignItems="center" display="flex">
+      <Flower />
+    </Box>
   );
 }

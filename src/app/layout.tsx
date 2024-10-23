@@ -1,6 +1,10 @@
+import "../style.css";
 import type { Metadata } from "next";
 import { ServerProviders } from "~/components/utils/provider-server";
-import { ClientProviderWrapper, UserInfoContextProvider } from "~/components/utils/providers";
+import {
+  ClientProviderWrapper,
+  UserInfoContextProvider,
+} from "~/components/utils/providers";
 
 export const metadata: Metadata = {
   title: "Sogno di Ale",

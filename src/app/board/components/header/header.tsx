@@ -1,10 +1,10 @@
 import { AppBar, Box, Toolbar } from "@mui/material";
+import { useContext } from "react";
 import { HeaderPageLinks } from "./header-page-links";
 import { HeaderSettings } from "./header-settings";
 import { HeaderLogo } from "./header-logo";
 import { HeaderPageWidget } from "./header-page-widget";
-import {useContext} from "react";
-import {UserInfoContext} from "~/components/utils/provider-context";
+import { UserInfoContext } from "~/components/utils/provider-context";
 
 export function Header() {
   const loggedUser = useContext(UserInfoContext);
@@ -21,7 +21,7 @@ export function Header() {
           <HeaderPageLinks />
         </Box>
         <Box alignSelf="end" mb={1}>
-          <HeaderPageWidget isLogged={loggedUser !== null} />
+          <HeaderPageWidget isLogged={loggedUser?.user?.isAuth} />
         </Box>
         <HeaderSettings />
       </Toolbar>

@@ -12,10 +12,12 @@ export function UserInfoContextProvider({
 }) {
   const [userInfoInit, setUserInfoInit] = useState<UserInfo>({
     userName: null,
+    isAuth: false,
   });
   const saveNewUser = (userInfo: UserInfo) => {
     const newUser = {
       userName: userInfo.userName,
+      isAuth: true,
     };
     localStorage.setItem("isAuth", String(userInfo.userName !== null));
     setUserInfoInit(newUser);

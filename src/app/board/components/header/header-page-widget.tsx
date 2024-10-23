@@ -13,7 +13,7 @@ const getLastFragment = (pathname: string) => {
   return pathname.substring(homeRoute.length).replaceAll("/", "");
 };
 
-export function HeaderPageWidget({ isLogged }: { isLogged: boolean }) {
+export function HeaderPageWidget({ isLogged }: { isLogged?: boolean }) {
   const pathname = usePathname();
   const location = getLastFragment(pathname);
   const router = useRouter();
